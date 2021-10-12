@@ -383,8 +383,10 @@ export class Titlebar extends Themebar {
 	}
 
 	private onDidChangeFullscreen(fullscreen: boolean) {
+		// the above on lies on load, so check separately
+		const realfullscreen = this.currentWindow.isFullScreen();
 		if (!isMacintosh) {
-			if (fullscreen) {
+			if (realfullscreen) {
 				hide(this.appIcon, this.title, this.windowControls);
 			} else {
 				show(this.appIcon, this.title, this.windowControls);
@@ -457,7 +459,7 @@ export class Titlebar extends Themebar {
 
 	/**
 	 * Update the background color of the title bar
-	 * @param backgroundColor The color for the background 
+	 * @param backgroundColor The color for the background
 	 */
 	updateBackground(backgroundColor: Color): void {
 		this._options.backgroundColor = backgroundColor;
