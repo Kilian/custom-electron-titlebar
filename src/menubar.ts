@@ -150,6 +150,12 @@ export class Menubar extends Disposable {
 		}));
 
 		this._register(addDisposableListener(window, EventType.KEY_DOWN, (e: KeyboardEvent) => {
+
+			if(e.key === 'Escape') {
+				this.setUnfocusedState();
+				return;
+			}
+			
 			if (!this.options.enableMnemonics || !e.altKey || e.ctrlKey || e.defaultPrevented) {
 				return;
 			}
